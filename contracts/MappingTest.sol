@@ -25,7 +25,7 @@ contract MappingTest {
 
 
     
-   function candidateRegister(string memory _name, address _depositContract) public returns (bool registered){
+   function candidateRegister(string memory _name, address _depositContract) public returns (address owner){
             
         // deposit contrct does not exist
         require(!candidateMap[_depositContract].valid);
@@ -37,12 +37,16 @@ contract MappingTest {
         candidate.depositContract = _depositContract;
         candidate.valid = true;
 
-        // candidateArray.push(msg.sender);
-
         emit RegisterCandidate(_name, _depositContract);
 
-        return candidateMap[_depositContract].valid;
+        return candidateMap[_depositContract].owner;
     }
+
+
+    function candidateOwner(address _depositContract) public view returns (address owner){
+        return candidateMap[_depositContract].owner;
+    }
+
 
     function candidateUnregister(address _depositContract) public returns (bool registered){
 
