@@ -6,7 +6,6 @@ const depositContract = '0x0000000000000000000000000000000000000001';
 contract('Election', async accounts => {
   // Candidates
 
-  // can register candidate
   it('Register Candidate', async () => {
     let election = await Election.deployed();
 
@@ -17,7 +16,6 @@ contract('Election', async accounts => {
     assert.equal(owner, accounts[0], 'Candidate was not registered');
   });
 
-  // can check registration status
   it('Check owner of Candidate', async () => {
     let election = await Election.deployed();
 
